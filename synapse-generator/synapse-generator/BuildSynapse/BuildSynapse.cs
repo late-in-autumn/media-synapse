@@ -1,19 +1,17 @@
 ﻿using ImageMagick;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace SynapseGenerator.BuildSynapse
 {
-    class BuildSynapse
+    class SynapseBuilder
     {
         private static readonly string INPUT_IMGS = "*.png";
 
         private readonly string InputFolder;
         private readonly string OutputFile;
 
-        public BuildSynapse(string inputFile)
+        public SynapseBuilder(string inputFile)
         {
             string dirName =
                 String.IsNullOrWhiteSpace(Path.GetDirectoryName(inputFile)) ?
