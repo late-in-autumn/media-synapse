@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace synapse_generator
+namespace SynapseGenerator
 {
     class Program
     {

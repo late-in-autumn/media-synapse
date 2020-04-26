@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace synapse_generator.SceneDetect
+namespace SynapseGenerator.SceneDetect
 {
     class SceneDetect
     {
@@ -18,18 +18,18 @@ namespace synapse_generator.SceneDetect
             string extName =
                 Path.GetExtension(fileName);
             string output = String.Empty;
-            using (System.Diagnostics.Process pProcess = new System.Diagnostics.Process())
+            using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
             {
-                pProcess.StartInfo.FileName = ExeName;
-                pProcess.StartInfo.Arguments =
+                proc.StartInfo.FileName = ExeName;
+                proc.StartInfo.Arguments =
                     String.Format(ExeArgTemplate, dirName, baseName, extName);
-                pProcess.StartInfo.UseShellExecute = false;
-                pProcess.StartInfo.RedirectStandardOutput = true;
-                pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                pProcess.StartInfo.CreateNoWindow = true;
-                pProcess.Start();
-                output = pProcess.StandardOutput.ReadToEnd();
-                pProcess.WaitForExit();
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                proc.StartInfo.CreateNoWindow = true;
+                proc.Start();
+                output = proc.StandardOutput.ReadToEnd();
+                proc.WaitForExit();
             }
             return output;
         }
