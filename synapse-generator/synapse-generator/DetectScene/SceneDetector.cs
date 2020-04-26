@@ -1,15 +1,20 @@
 ﻿using System;
 using System.IO;
 
-namespace SynapseGenerator.SceneDetect
+namespace SynapseGenerator.DetectScene
 {
     class SceneDetector
     {
+        // executable name
         private static readonly string EXE_NAME = @"scenedetect.exe";
+        // executable arguments template
         private static readonly string EXE_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/scenes.csv detect-content list-scenes -n save-images -p -c 9 -n 1 -o {0}/{1}/imgs split-video --copy -o {0}/{1}/scenes";
 
+        // the directory where the video file is located
         private readonly string DirName;
+        // the basename of the video file
         private readonly string BaseName;
+        // the extension of the video file
         private readonly string ExtName;
 
         public SceneDetector(string fileName)
@@ -25,6 +30,7 @@ namespace SynapseGenerator.SceneDetect
 
         public void Detect()
         {
+            // invode PySceneDetect to analyze the video file
             using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
             {
                 proc.StartInfo.FileName = EXE_NAME;

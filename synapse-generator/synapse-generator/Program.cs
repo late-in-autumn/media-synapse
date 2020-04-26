@@ -1,5 +1,5 @@
 ﻿using SynapseGenerator.BuildSynapse;
-using SynapseGenerator.SceneDetect;
+using SynapseGenerator.DetectScene;
 using System;
 
 namespace SynapseGenerator
@@ -8,12 +8,17 @@ namespace SynapseGenerator
     {
         static void Main(string[] args)
         {
+            // parse input
             string fileName = args[0];
             Console.WriteLine($"Input video file: {fileName}");
+
+            // analyze the input video
             SceneDetector detector = new SceneDetector(fileName);
-            SynapseBuilder builder = new BuildSynapse.SynapseBuilder(fileName);
             Console.WriteLine("Analyzing input video file, this may take a long time...");
             detector.Detect();
+
+            // build the synapse image
+            SynapseBuilder builder = new SynapseBuilder(fileName);
             Console.WriteLine("Generating synapse image...");
             builder.Generate();
         }
