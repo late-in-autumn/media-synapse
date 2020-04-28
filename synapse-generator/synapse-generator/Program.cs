@@ -1,5 +1,6 @@
 ﻿using SynapseGenerator.BuildSynapse;
 using SynapseGenerator.DetectScene;
+using SynapseGenerator.WriteMetaData;
 using System;
 
 namespace SynapseGenerator
@@ -21,6 +22,11 @@ namespace SynapseGenerator
             SynapseBuilder builder = new SynapseBuilder(fileName);
             Console.WriteLine("Generating synapse image...");
             builder.Generate();
+
+            // write the metadata
+            MetaDataWriter writer = new MetaDataWriter(fileName);
+            Console.WriteLine("Writing synapse metadata...");
+            writer.Write();
         }
     }
 }

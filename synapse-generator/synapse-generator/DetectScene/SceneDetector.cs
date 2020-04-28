@@ -35,22 +35,20 @@ namespace SynapseGenerator.DetectScene
         public void Detect()
         {
             // invode PySceneDetect to analyze the video file
-            using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
-            {
-                proc.StartInfo.FileName = EXE_NAME;
-                proc.StartInfo.Arguments =
-                    String.Format(EXE_ARG_TEMPLATE, 
-                    DirName, BaseName, ExtName, 
-                    SCENE_DETECTION_THRESHOLD, MIN_SCENE_LENGTH);
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                proc.StartInfo.CreateNoWindow = true;
-                proc.Start();
-                string output = proc.StandardOutput.ReadToEnd();
-                proc.WaitForExit();
-                Console.WriteLine(output);
-            }
+            using System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = EXE_NAME;
+            proc.StartInfo.Arguments =
+                String.Format(EXE_ARG_TEMPLATE,
+                DirName, BaseName, ExtName,
+                SCENE_DETECTION_THRESHOLD, MIN_SCENE_LENGTH);
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+            string output = proc.StandardOutput.ReadToEnd();
+            proc.WaitForExit();
+            Console.WriteLine(output);
         }
     }
 }
