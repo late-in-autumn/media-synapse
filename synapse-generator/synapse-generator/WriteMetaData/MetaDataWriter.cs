@@ -11,6 +11,7 @@ namespace SynapseGenerator.WriteMetaData
     {
         private class SynapseMetaData
         {
+            public string SourceType { get; set; }
             public long ImageWidth { get; set; }
             public long NumberOfScenes { get; set; }
             public List<long> SceneStartFrameNumbers { get; set; }
@@ -55,6 +56,7 @@ namespace SynapseGenerator.WriteMetaData
             }
             SynapseMeta = new SynapseMetaData()
             {
+                SourceType = "video",
                 ImageWidth = 352 * frameNumbers.LongCount(),
                 NumberOfScenes = frameNumbers.LongCount(),
                 SceneStartFrameNumbers = frameNumbers
