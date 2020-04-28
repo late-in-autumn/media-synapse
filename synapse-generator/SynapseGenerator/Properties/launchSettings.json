@@ -2,7 +2,7 @@
   "profiles": {
     "synapse-generator": {
       "commandName": "Project",
-      "commandLineArgs": "C:/Users/SijieBu.AzureAD/source/repos/media-synapse/data-file-example/video_2.avi",
+      "commandLineArgs": "C:/Users/SijieBu.AzureAD/source/repos/media-synapse/data-file-examples/video_2.avi",
       "workingDirectory": "C:\\Users\\SijieBu.AzureAD\\source\\repos\\media-synapse\\data-file-example"
     }
   }
