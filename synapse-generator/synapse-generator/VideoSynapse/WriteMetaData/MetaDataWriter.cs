@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace SynapseGenerator.WriteMetaData
+namespace SynapseGenerator.VideoSynapse.WriteMetaData
 {
     class MetaDataWriter
     {
-        private class SynapseMetaData
+        private class VideoSynapseMetaData
         {
             public string SourceType { get; set; }
             public long ImageWidth { get; set; }
@@ -22,7 +22,7 @@ namespace SynapseGenerator.WriteMetaData
         // the basename of the video file
         private readonly string BaseName;
 
-        private SynapseMetaData SynapseMeta;
+        private VideoSynapseMetaData SynapseMeta;
         private string SerializedMeta;
 
         public MetaDataWriter(string fileName)
@@ -54,7 +54,7 @@ namespace SynapseGenerator.WriteMetaData
                 string[] currentRow = parser.ReadFields();
                 frameNumbers.Add(long.Parse(currentRow[1]));
             }
-            SynapseMeta = new SynapseMetaData()
+            SynapseMeta = new VideoSynapseMetaData()
             {
                 SourceType = "video",
                 ImageWidth = 352 * frameNumbers.LongCount(),

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace SynapseGenerator.DetectScene
+namespace SynapseGenerator.VideoSynapse.DetectScene
 {
     class SceneDetector
     {

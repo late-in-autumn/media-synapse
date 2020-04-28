@@ -1,6 +1,6 @@
-﻿using SynapseGenerator.BuildSynapse;
-using SynapseGenerator.DetectScene;
-using SynapseGenerator.WriteMetaData;
+﻿using SynapseGenerator.VideoSynapse.BuildSynapse;
+using SynapseGenerator.VideoSynapse.DetectScene;
+using SynapseGenerator.VideoSynapse.WriteMetaData;
 using System;
 
 namespace SynapseGenerator
