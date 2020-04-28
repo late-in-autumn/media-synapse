@@ -49,6 +49,7 @@ namespace SynapseGenerator.DetectScene
                 proc.Start();
                 string output = proc.StandardOutput.ReadToEnd();
                 proc.WaitForExit();
+                Console.WriteLine(output);
             }
         }
     }
