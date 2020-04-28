@@ -8,7 +8,11 @@ namespace SynapseGenerator.DetectScene
         // executable name
         private static readonly string EXE_NAME = @"scenedetect.exe";
         // executable arguments template
-        private static readonly string EXE_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/scenes.csv detect-content list-scenes -n save-images -p -c 9 -n 1 -o {0}/{1}/imgs split-video --copy -o {0}/{1}/scenes";
+        private static readonly string EXE_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/stats.csv detect-content -t {3} -m {4} list-scenes -f {0}/{1}/scenes.csv save-images -p -c 9 -n 2 -o {0}/{1}/imgs split-video --copy -o {0}/{1}/scenes";
+        // scene detection threshold
+        private static readonly string SCENE_DETECTION_THRESHOLD = "16";
+        // min scene length
+        private static readonly string MIN_SCENE_LENGTH = "00:00:06";
 
         // the directory where the video file is located
         private readonly string DirName;
@@ -35,7 +39,9 @@ namespace SynapseGenerator.DetectScene
             {
                 proc.StartInfo.FileName = EXE_NAME;
                 proc.StartInfo.Arguments =
-                    String.Format(EXE_ARG_TEMPLATE, DirName, BaseName, ExtName);
+                    String.Format(EXE_ARG_TEMPLATE, 
+                    DirName, BaseName, ExtName, 
+                    SCENE_DETECTION_THRESHOLD, MIN_SCENE_LENGTH);
                 proc.StartInfo.UseShellExecute = false;
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;

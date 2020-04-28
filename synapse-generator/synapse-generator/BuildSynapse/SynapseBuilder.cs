@@ -7,7 +7,7 @@ namespace SynapseGenerator.BuildSynapse
     class SynapseBuilder
     {
         // only accept PNGs for now
-        private static readonly string INPUT_IMGS = "*.png";
+        private static readonly string INPUT_IMGS = "*-01.png";
 
         // the folder where the extracted source images reside
         private readonly string InputFolder;
@@ -22,7 +22,7 @@ namespace SynapseGenerator.BuildSynapse
             string baseName =
                 Path.GetFileNameWithoutExtension(inputFile);
             InputFolder = Path.Join(dirName, baseName, "imgs");
-            OutputFile = Path.Join(dirName, baseName + ".synapse.png");
+            OutputFile = Path.Join(dirName, baseName, "synapse.png");
         }
 
         public void Generate()
