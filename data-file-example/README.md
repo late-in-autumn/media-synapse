@@ -18,4 +18,9 @@
                 - Length in timecode
                 - Length in the number of seconds
     - stats.csv file: PySceneDetect statistics output, helps with optimizing the detection parameters
+    - synapse.json file: metadata for the synapse image
+        - SourceType: whether it is generated from a video ("video") or a set of images ("stills")
+        - ImageWidth: the width of the synapse image
+        - NumberOfScenes: the number of scenes included in the synapse image
+        - SceneStartFrameNumbers: the starting frame number of each scene
     - synapse.png file: The synapse image
