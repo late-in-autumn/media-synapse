@@ -1,0 +1,21 @@
+# Scene Detector Outputs
+- For every detected video, a folder with the same name will be created
+- The folder contains the following
+    - imgs subfolder: extracted images for each scene (currently 4 frames per scene)
+    - scenes subfolder: each scene in an individual MKV-formatted video file
+    - scenes.csv file: containing information about each scene
+        - Line 1: Timecode List
+            - The start timecode of each scene
+            - Line 2 onwards: detailed scene information for each scene by the following order
+                - Scene No.
+                - Start frame
+                - Start timecode
+                - Start time in seconds (start from the i-th second)
+                - End frame
+                - End timecode
+                - End time in seconds (end at the i-th second)
+                - Length in the number of frames
+                - Length in timecode
+                - Length in the number of seconds
+    - stats.csv file: PySceneDetect statistics output, helps with optimizing the detection parameters
+    - synapse.png file: The synapse image
