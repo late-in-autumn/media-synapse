@@ -24,3 +24,11 @@
         - NumberOfScenes: the number of scenes included in the synapse image
         - SceneStartFrameNumbers: the starting frame number of each scene
     - synapse.png file: The synapse image
+- For every folder containing stills image, a folder with the name `{foldername}_synapse` will be created
+- The folder contains the following
+    - synapse.json file: metadata for the synapse image
+        - SourceType: whether it is generated from a video ("video") or a set of images ("stills")
+        - ImageWidth: the width of the synapse image
+        - NumberOfShots: how many shots (stills) are included in the synapse
+        - ShotFileNames: the filenames (including directory name) of the included shots
+    - synapse.png file: The synapse image
