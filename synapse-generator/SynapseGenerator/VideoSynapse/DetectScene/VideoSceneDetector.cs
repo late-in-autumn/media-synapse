@@ -3,7 +3,7 @@ using System.IO;
 
 namespace SynapseGenerator.VideoSynapse.DetectScene
 {
-    class SceneDetector
+    class VideoSceneDetector
     {
         // executable name
         private static readonly string EXE_NAME = @"scenedetect.exe";
@@ -15,21 +15,26 @@ namespace SynapseGenerator.VideoSynapse.DetectScene
         private static readonly string MIN_SCENE_LENGTH = "00:00:06";
 
         // the directory where the video file is located
-        private readonly string DirName;
+        private readonly string FolderName;
         // the basename of the video file
         private readonly string BaseName;
         // the extension of the video file
         private readonly string ExtName;
 
-        public SceneDetector(string fileName)
+        public VideoSceneDetector(string inputFileName)
         {
-            DirName =
-                String.IsNullOrWhiteSpace(Path.GetDirectoryName(fileName)) ?
-                String.Empty : Path.GetDirectoryName(fileName);
+            if (String.IsNullOrWhiteSpace(inputFileName))
+            {
+                throw new ArgumentException("message", nameof(inputFileName));
+            }
+
+            FolderName =
+                String.IsNullOrWhiteSpace(Path.GetDirectoryName(inputFileName)) ?
+                String.Empty : Path.GetDirectoryName(inputFileName);
             BaseName =
-                Path.GetFileNameWithoutExtension(fileName);
+                Path.GetFileNameWithoutExtension(inputFileName);
             ExtName =
-                Path.GetExtension(fileName);
+                Path.GetExtension(inputFileName);
         }
 
         public void Detect()
@@ -39,7 +44,7 @@ namespace SynapseGenerator.VideoSynapse.DetectScene
             proc.StartInfo.FileName = EXE_NAME;
             proc.StartInfo.Arguments =
                 String.Format(EXE_ARG_TEMPLATE,
-                DirName, BaseName, ExtName,
+                FolderName, BaseName, ExtName,
                 SCENE_DETECTION_THRESHOLD, MIN_SCENE_LENGTH);
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.RedirectStandardOutput = true;
@@ -47,8 +52,8 @@ namespace SynapseGenerator.VideoSynapse.DetectScene
             proc.StartInfo.CreateNoWindow = true;
             proc.Start();
             string output = proc.StandardOutput.ReadToEnd();
-            proc.WaitForExit();
             Console.WriteLine(output);
+            proc.WaitForExit();
         }
     }
 }

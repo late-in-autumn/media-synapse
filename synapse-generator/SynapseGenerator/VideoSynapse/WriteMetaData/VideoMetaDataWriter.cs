@@ -7,31 +7,44 @@ using System.Linq;
 
 namespace SynapseGenerator.VideoSynapse.WriteMetaData
 {
-    class MetaDataWriter
+    class VideoMetaDataWriter
     {
+        // a data structure that helps with JSON serialization
         private class VideoSynapseMetaData
         {
+            // will always be "video" for this module
             public string SourceType { get; set; }
+
+            // width of synapse image
             public long ImageWidth { get; set; }
+
+            // number of scenes included
             public long NumberOfScenes { get; set; }
+
+            // the starting frame of each scene
             public List<long> SceneStartFrameNumbers { get; set; }
         }
 
         // the directory where the video file is located
-        private readonly string DirName;
+        private readonly string FolderName;
         // the basename of the video file
         private readonly string BaseName;
 
         private VideoSynapseMetaData SynapseMeta;
         private string SerializedMeta;
 
-        public MetaDataWriter(string fileName)
+        public VideoMetaDataWriter(string inputFileName)
         {
-            DirName =
-                String.IsNullOrWhiteSpace(Path.GetDirectoryName(fileName)) ?
-                String.Empty : Path.GetDirectoryName(fileName);
+            if (String.IsNullOrWhiteSpace(inputFileName))
+            {
+                throw new ArgumentException("message", nameof(inputFileName));
+            }
+
+            FolderName =
+                String.IsNullOrWhiteSpace(Path.GetDirectoryName(inputFileName)) ?
+                String.Empty : Path.GetDirectoryName(inputFileName);
             BaseName =
-                Path.GetFileNameWithoutExtension(fileName);
+                Path.GetFileNameWithoutExtension(inputFileName);
         }
 
         public void Write()
@@ -43,9 +56,10 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
 
         private void ReadSceneDetectorInput()
         {
+            // parse output from PySceneDetect
             List<long> frameNumbers = new List<long>();
             TextFieldParser parser = new TextFieldParser(
-                Path.Join(DirName, BaseName, "scenes.csv"));
+                Path.Join(FolderName, BaseName, "scenes.csv"));
             parser.TextFieldType = FieldType.Delimited;
             parser.SetDelimiters(",");
             for (int i = 0; i < 2; i++) parser.ReadLine();
@@ -54,6 +68,8 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
                 string[] currentRow = parser.ReadFields();
                 frameNumbers.Add(long.Parse(currentRow[1]));
             }
+
+            // trun the parsed information into our data structure
             SynapseMeta = new VideoSynapseMetaData()
             {
                 SourceType = "video",
@@ -65,13 +81,15 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
 
         private void SerializeSynapseMetaData()
         {
+            // empty JSON for empty synapse
             if (SynapseMeta is null) SerializedMeta = String.Empty;
+            // serialize our data structure into JSON
             else SerializedMeta = JsonConvert.SerializeObject(SynapseMeta);
         }
 
         private void WriteSerializedMetaData()
         {
-            File.WriteAllText(Path.Join(DirName, BaseName, "synapse.json"), SerializedMeta);
+            File.WriteAllText(Path.Join(FolderName, BaseName, "synapse.json"), SerializedMeta);
         }
     }
 

@@ -1,6 +1,5 @@
-﻿using SynapseGenerator.VideoSynapse.BuildSynapse;
-using SynapseGenerator.VideoSynapse.DetectScene;
-using SynapseGenerator.VideoSynapse.WriteMetaData;
+﻿using SynapseGenerator.StillsSynapse;
+using SynapseGenerator.VideoSynapse;
 using System;
 
 namespace SynapseGenerator
@@ -10,23 +9,25 @@ namespace SynapseGenerator
         static void Main(string[] args)
         {
             // parse input
-            string fileName = args[0];
-            Console.WriteLine($"Input video file: {fileName}");
+            string videoFileName = args[0];
+            string stillsFolderName = args[1];
+            string stillsOutputName = stillsFolderName + "_synapse";
+            Console.WriteLine($"Input video file: {videoFileName}");
+            Console.WriteLine($"Input stills folder: {stillsFolderName}");
 
-            // analyze the input video
-            SceneDetector detector = new SceneDetector(fileName);
-            Console.WriteLine("Analyzing input video file, this may take a long time...");
-            detector.Detect();
+            Console.WriteLine("==================================");
 
-            // build the synapse image
-            SynapseBuilder builder = new SynapseBuilder(fileName);
-            Console.WriteLine("Generating synapse image...");
-            builder.Generate();
+            // generate video synapse
+            Console.WriteLine("Generating video synapse...");
+            VideoSynapseDriver video = new VideoSynapseDriver(videoFileName);
+            video.Execute();
 
-            // write the metadata
-            MetaDataWriter writer = new MetaDataWriter(fileName);
-            Console.WriteLine("Writing synapse metadata...");
-            writer.Write();
+            Console.WriteLine("==================================");
+
+            // generate stills synapse
+            Console.WriteLine("Generating stills synapse...");
+            StillsSynapseDriver stills = new StillsSynapseDriver(stillsFolderName, stillsOutputName);
+            stills.Execute();
         }
     }
 }

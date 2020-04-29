@@ -4,7 +4,7 @@ using System.IO;
 
 namespace SynapseGenerator.VideoSynapse.BuildSynapse
 {
-    class SynapseBuilder
+    class VideoSynapseBuilder
     {
         // only accept PNGs for now
         private static readonly string INPUT_IMGS = "*-01.png";
@@ -14,18 +14,23 @@ namespace SynapseGenerator.VideoSynapse.BuildSynapse
         // the folder where the completed synapse image gets saved to
         private readonly string OutputFile;
 
-        public SynapseBuilder(string inputFile)
+        public VideoSynapseBuilder(string inputFileName)
         {
+            if (String.IsNullOrWhiteSpace(inputFileName))
+            {
+                throw new ArgumentException("message", nameof(inputFileName));
+            }
+
             string dirName =
-                String.IsNullOrWhiteSpace(Path.GetDirectoryName(inputFile)) ?
-                String.Empty : Path.GetDirectoryName(inputFile);
+                String.IsNullOrWhiteSpace(Path.GetDirectoryName(inputFileName)) ?
+                String.Empty : Path.GetDirectoryName(inputFileName);
             string baseName =
-                Path.GetFileNameWithoutExtension(inputFile);
+                Path.GetFileNameWithoutExtension(inputFileName);
             InputFolder = Path.Join(dirName, baseName, "imgs");
             OutputFile = Path.Join(dirName, baseName, "synapse.png");
         }
 
-        public void Generate()
+        public void Build()
         {
             string[] imgs = Directory.GetFiles(InputFolder, INPUT_IMGS);
 
