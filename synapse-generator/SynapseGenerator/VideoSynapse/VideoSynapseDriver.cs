@@ -3,6 +3,7 @@ using SynapseGenerator.VideoSynapse.DetectScene;
 using SynapseGenerator.VideoSynapse.WriteMetaData;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace SynapseGenerator.VideoSynapse
@@ -15,6 +16,11 @@ namespace SynapseGenerator.VideoSynapse
         {
             InputFileName =
                 inputFileName ?? throw new ArgumentNullException(nameof(inputFileName));
+            Directory.CreateDirectory(
+                Path.Join(
+                    String.IsNullOrWhiteSpace(Path.GetDirectoryName(inputFileName)) ?
+                    String.Empty : Path.GetDirectoryName(inputFileName),
+                    Path.GetFileNameWithoutExtension(inputFileName)));
         }
 
         public void Execute()
