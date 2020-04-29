@@ -1,4 +1,5 @@
-# Scene Detector Outputs
+# Documentation and Examples for the Metadata of Synapse Images
+## Video Synapse Outputs
 - For every detected video, a folder with the same name will be created
 - The folder contains the following
     - imgs subfolder: extracted images for each scene (currently 4 frames per scene)
@@ -24,6 +25,7 @@
         - NumberOfScenes: the number of scenes included in the synapse image
         - SceneStartFrameNumbers: the starting frame number of each scene
     - synapse.png file: The synapse image
+## Stills Synapse Outputs
 - For every folder containing stills image, a folder with the name `{foldername}_synapse` will be created
 - The folder contains the following
     - synapse.json file: metadata for the synapse image
