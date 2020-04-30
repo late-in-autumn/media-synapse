@@ -1,0 +1,32 @@
+{
+  "SourceType": "video",
+  "SceneDetails": [
+    {
+      "File": "576RGBVideo2",
+      "Type": "video",
+      "StartX": 0,
+      "EndX": 193,
+      "FrameNumber": 0
+    },
+    {
+      "File": "576RGBVideo2",
+      "Type": "video",
+      "StartX": 193,
+      "EndX": 345,
+      "FrameNumber": 188
+    },
+    {
+      "File": "576RGBVideo2",
+      "Type": "video",
+      "StartX": 345,
+      "EndX": 501,
+      "FrameNumber": 368
+    },
+    {
+      "File": "image-0003.rgb",
+      "Type": "image",
+      "StartX": 501,
+      "EndX": 795
+    }
+  ]
+}
