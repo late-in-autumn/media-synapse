@@ -1,14 +1,13 @@
-﻿using SynapseGenerator.VideoSynapse.BuildSynapse;
+﻿using SynapseGenerator.AbstractClasses;
+using SynapseGenerator.VideoSynapse.BuildSynapse;
 using SynapseGenerator.VideoSynapse.DetectScene;
 using SynapseGenerator.VideoSynapse.WriteMetaData;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace SynapseGenerator.VideoSynapse
 {
-    class VideoSynapseDriver
+    class VideoSynapseDriver : Driver
     {
         private readonly string InputFileName;
 
@@ -23,7 +22,7 @@ namespace SynapseGenerator.VideoSynapse
                     Path.GetFileNameWithoutExtension(inputFileName)));
         }
 
-        public void Execute()
+        public override void Execute()
         {
             // analyze the input video
             Console.WriteLine("Analyzing input video file, this may take a long time...");

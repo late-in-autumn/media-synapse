@@ -27,7 +27,7 @@ namespace SynapseGenerator.VideoSynapse.BuildSynapse
             string baseName =
                 Path.GetFileNameWithoutExtension(inputFileName);
             InputFolder = Path.Join(dirName, baseName, "imgs");
-            OutputFile = Path.Join(dirName, baseName, "synapse.png");
+            OutputFile = Path.Join(dirName, $"{baseName}_synapse.png");
         }
 
         public void Build()
@@ -35,17 +35,13 @@ namespace SynapseGenerator.VideoSynapse.BuildSynapse
             string[] imgs = Directory.GetFiles(InputFolder, INPUT_IMGS);
 
             // only stitch the source images for now
-            using (var images = new MagickImageCollection())
-            {
-                foreach (var i in imgs)
-                    images.Add(new MagickImage(i));
+            using var images = new MagickImageCollection();
+            foreach (var i in imgs)
+                images.Add(new MagickImage(i));
 
-                // stitch horizontally as demonstrated in the assignment example
-                using (var result = images.AppendHorizontally())
-                {
-                    result.Write(OutputFile);
-                }
-            }
+            // stitch horizontally as demonstrated in the assignment example
+            using var result = images.AppendHorizontally();
+            result.Write(OutputFile);
         }
     }
 }

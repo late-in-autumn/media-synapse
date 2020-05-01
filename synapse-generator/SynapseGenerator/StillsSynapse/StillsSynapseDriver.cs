@@ -1,35 +1,29 @@
-﻿using SynapseGenerator.StillsSynapse.BuildSynapse;
+﻿using SynapseGenerator.AbstractClasses;
+using SynapseGenerator.StillsSynapse.BuildSynapse;
 using SynapseGenerator.StillsSynapse.SelectSynapseStills;
 using SynapseGenerator.StillsSynapse.WriteMetaData;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace SynapseGenerator.StillsSynapse
 {
-    class StillsSynapseDriver
+    class StillsSynapseDriver : Driver
     {
         private readonly string InputFolder;
-        private readonly string OutputFolder;
+        private readonly string OutputBaseName;
 
-        public StillsSynapseDriver(string inputFolder, string outputFolder)
+        public StillsSynapseDriver(string inputFolder)
         {
             if (String.IsNullOrWhiteSpace(inputFolder))
             {
                 throw new ArgumentException("message", nameof(inputFolder));
             }
 
-            if (String.IsNullOrWhiteSpace(outputFolder))
-            {
-                throw new ArgumentException("message", nameof(outputFolder));
-            }
-
             InputFolder = inputFolder;
-            OutputFolder = outputFolder;
-            Directory.CreateDirectory(outputFolder);
+            OutputBaseName = $"{inputFolder}_synapse";
         }
 
-        public void Execute()
+        public override void Execute()
         {
             // select synapse stills
             Console.WriteLine("Selecting synapse stills, this may take a long time...");
@@ -40,13 +34,13 @@ namespace SynapseGenerator.StillsSynapse
             // generate synapse image
             Console.WriteLine("Generating stills synapse image...");
             StillsSynapseBuilder builder =
-                new StillsSynapseBuilder(OutputFolder, selected);
+                new StillsSynapseBuilder(OutputBaseName, selected);
             builder.Build();
 
             // write the metadata
             Console.WriteLine("Writing stills synapse metadata...");
             StillsMetaDataWriter writer =
-                new StillsMetaDataWriter(OutputFolder, selected);
+                new StillsMetaDataWriter(OutputBaseName, selected);
             writer.Write();
 
         }

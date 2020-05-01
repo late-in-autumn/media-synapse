@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SynapseGenerator.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,39 +9,23 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
 {
     class StillsMetaDataWriter
     {
-        // a data structure that helps with JSON serialization
-        private class StillsSynapseMetaData
-        {
-            // will always be "stills" for this module
-            public string SourceType { get; set; }
-
-            // width of the synapse image
-            public long ImageWidth { get; set; }
-
-            // number of stills (shots) included in the synapse image
-            public long NumberOfShots { get; set; }
-
-            // the respective filenames of the included stills (shots)
-            public List<string> ShotFileNames { get; set; }
-        }
-
         // where the synapse metadata will be saved
-        private readonly string OutputFolder;
+        private readonly string OutputBaseName;
         // the stills selected to be included in the synapse
         private readonly List<string> SynapseStills;
 
         private string SerializedMeta;
 
         public StillsMetaDataWriter(
-            string outputFolder,
+            string outputBaseName,
             List<string> synapseStills)
         {
-            if (String.IsNullOrWhiteSpace(outputFolder))
+            if (String.IsNullOrWhiteSpace(outputBaseName))
             {
-                throw new ArgumentException("message", nameof(outputFolder));
+                throw new ArgumentException("message", nameof(outputBaseName));
             }
 
-            OutputFolder = outputFolder;
+            OutputBaseName = outputBaseName;
             SynapseStills =
                 synapseStills ?? throw new ArgumentNullException(nameof(synapseStills));
         }
@@ -54,7 +39,7 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
         private void SerializeSynapseMetaData()
         {
             // build our data structure from input
-            StillsSynapseMetaData meta = new StillsSynapseMetaData()
+            IndividualSynapseStruct meta = new IndividualSynapseStruct()
             {
                 SourceType = "stills",
                 ImageWidth = 352 * SynapseStills.LongCount(),
@@ -68,10 +53,10 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
         {
             if (String.IsNullOrWhiteSpace(SerializedMeta))
                 // empty JSON for empty synapse 
-                File.WriteAllText(Path.Join(OutputFolder, "synapse.json"), String.Empty);
+                File.WriteAllText($"{OutputBaseName}.json", String.Empty);
             else
                 //serialize our data structure into JSON
-                File.WriteAllText(Path.Join(OutputFolder, "synapse.json"), SerializedMeta);
+                File.WriteAllText($"{OutputBaseName}.json", SerializedMeta);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using SynapseGenerator.StillsSynapse;
+﻿using SynapseGenerator.AbstractClasses;
+using SynapseGenerator.CombineSynapse;
+using SynapseGenerator.StillsSynapse;
 using SynapseGenerator.VideoSynapse;
 using System;
 
@@ -11,7 +13,7 @@ namespace SynapseGenerator
             // parse input
             string videoFileName = args[0];
             string stillsFolderName = args[1];
-            string stillsOutputName = stillsFolderName + "_synapse";
+            string combineFolderName = args[2];
             Console.WriteLine($"Input video file: {videoFileName}");
             Console.WriteLine($"Input stills folder: {stillsFolderName}");
 
@@ -19,15 +21,22 @@ namespace SynapseGenerator
 
             // generate video synapse
             Console.WriteLine("Generating video synapse...");
-            VideoSynapseDriver video = new VideoSynapseDriver(videoFileName);
+            Driver video = new VideoSynapseDriver(videoFileName);
             video.Execute();
 
             Console.WriteLine("==================================");
 
             // generate stills synapse
             Console.WriteLine("Generating stills synapse...");
-            StillsSynapseDriver stills = new StillsSynapseDriver(stillsFolderName, stillsOutputName);
+            Driver stills = new StillsSynapseDriver(stillsFolderName);
             stills.Execute();
+
+            Console.WriteLine("==================================");
+
+            // combining synapse
+            Console.WriteLine("Combining stills synapse...");
+            Driver combine = new CombineSynapseDriver(combineFolderName);
+            combine.Execute();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json;
+using SynapseGenerator.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,28 +10,12 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
 {
     class VideoMetaDataWriter
     {
-        // a data structure that helps with JSON serialization
-        private class VideoSynapseMetaData
-        {
-            // will always be "video" for this module
-            public string SourceType { get; set; }
-
-            // width of synapse image
-            public long ImageWidth { get; set; }
-
-            // number of scenes included
-            public long NumberOfScenes { get; set; }
-
-            // the starting frame of each scene
-            public List<long> SceneStartFrameNumbers { get; set; }
-        }
-
         // the directory where the video file is located
         private readonly string FolderName;
         // the basename of the video file
         private readonly string BaseName;
 
-        private VideoSynapseMetaData SynapseMeta;
+        private IndividualSynapseStruct SynapseMeta;
         private string SerializedMeta;
 
         public VideoMetaDataWriter(string inputFileName)
@@ -70,9 +55,10 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
             }
 
             // trun the parsed information into our data structure
-            SynapseMeta = new VideoSynapseMetaData()
+            SynapseMeta = new IndividualSynapseStruct()
             {
                 SourceType = "video",
+                SourceFileName = BaseName,
                 ImageWidth = 352 * frameNumbers.LongCount(),
                 NumberOfScenes = frameNumbers.LongCount(),
                 SceneStartFrameNumbers = frameNumbers
@@ -89,7 +75,7 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
 
         private void WriteSerializedMetaData()
         {
-            File.WriteAllText(Path.Join(FolderName, BaseName, "synapse.json"), SerializedMeta);
+            File.WriteAllText(Path.Join(FolderName, $"{BaseName}_synapse.json"), SerializedMeta);
         }
     }
 

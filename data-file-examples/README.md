@@ -1,36 +1,14 @@
 # Documentation and Examples for the Metadata of Synapse Images
-## Video Synapse Outputs
-- For every detected video, a folder with the same name will be created
-- The folder contains the following
-    - imgs subfolder: extracted images for each scene (currently 4 frames per scene)
-    - scenes subfolder: each scene in an individual MKV-formatted video file
-    - scenes.csv file: containing information about each scene
-        - Line 1: Timecode List
-            - The start timecode of each scene
-            - Line 2 onwards: detailed scene information for each scene by the following order
-                - Scene No.
-                - Start frame
-                - Start timecode
-                - Start time in seconds (start from the i-th second)
-                - End frame
-                - End timecode
-                - End time in seconds (end at the i-th second)
-                - Length in the number of frames
-                - Length in timecode
-                - Length in the number of seconds
-    - stats.csv file: PySceneDetect statistics output, helps with optimizing the detection parameters
-    - synapse.json file: metadata for the synapse image
-        - SourceType: whether it is generated from a video ("video") or a set of images ("stills")
-        - ImageWidth: the width of the synapse image
-        - NumberOfScenes: the number of scenes included in the synapse image
-        - SceneStartFrameNumbers: the starting frame number of each scene
-    - synapse.png file: The synapse image
-## Stills Synapse Outputs
-- For every folder containing stills image, a folder with the name `{foldername}_synapse` will be created
-- The folder contains the following
-    - synapse.json file: metadata for the synapse image
-        - SourceType: whether it is generated from a video ("video") or a set of images ("stills")
-        - ImageWidth: the width of the synapse image
-        - NumberOfShots: how many shots (stills) are included in the synapse
-        - ShotFileNames: the filenames (including directory name) of the included shots
-    - synapse.png file: The synapse image
+## New Combined Synapse Image of all Inputs
+- `combined_synapse.json` file: combined synapse metadata
+    - `NumberOfSources`: an integer denoting the total number of source media used to create the synapse. A video clip is considered as one individual source, and an **entire folder containing stills** is considered as a single source
+    - `TotalWidth`: an integer denoting the resulting width of the combined synapse image
+    - `SynapseBoundries`: an array of integers, each denoting the starting x-axis coordinate of the sub-synapse of a single source media
+    - `IndividualSources`: an array of JSON objects, each containing the metadata of a sub-synapse from a single source media, in the same order as `SynapseBoundries`
+        - `SourceType`: a string of either `video` or `stills`
+        - `SourceFileName`: `null` for stills synapse, or a string denoting the name of the source video clip for video synapse
+        - `ImageWidth`: an integer denoting the width of the current sub-synapse image
+        - `NumberOfScenes`: an integer, 0 for stills, or the number of scenes for video
+        - `NumberOfShots`: an integer, 0 for video, or the number of shots included from the given stills collections
+        - `SceneStartFrameNumbers`: an array of integers, `null` for stills, or the starting frame number of each scene for video
+        - `ShotFileNames`: an array of strings, `null` for video, or the filenames of individual still images chosen from the collection for stills

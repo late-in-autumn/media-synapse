@@ -1,0 +1,26 @@
+{
+  "SourceType": "video",
+  "ImageWidth": 3168,
+  "NumberOfScenes": 9,
+  "SceneDetails": [
+    {
+      "File": "576RGBVideo2",
+      "Type": "video",
+      "FrameNumber": 0
+    },
+    {
+      "File": "576RGBVideo2",
+      "Type": "video",
+      "FrameNumber": 188
+    },
+    {
+      "File": "576RGBVideo2",
+      "Type": "video",
+      "FrameNumber": 368
+    },
+    {
+      "File": "image-0003.rgb",
+      "Type": "image"
+    }
+  ]
+}
