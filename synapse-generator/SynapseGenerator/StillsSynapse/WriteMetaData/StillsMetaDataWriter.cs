@@ -38,14 +38,21 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
 
         private void SerializeSynapseMetaData()
         {
+            // extract only the basename of source files
+            List<string> SynapseStillsBaseName = new List<string>();
+            foreach (var s in SynapseStills)
+                SynapseStillsBaseName.Add(Path.GetFileNameWithoutExtension(s));
+
             // build our data structure from input
             IndividualSynapseStruct meta = new IndividualSynapseStruct()
             {
                 SourceType = "stills",
                 ImageWidth = Constants.Constants.SYNAPSE_WIDTH * SynapseStills.LongCount(),
-                NumberOfShots = SynapseStills.LongCount(),
-                ShotFileNames = SynapseStills
+                NumberOfShots = SynapseStillsBaseName.LongCount(),
+                ShotFileNames = SynapseStillsBaseName
             };
+
+            // serialize our data structure
             SerializedMeta = JsonConvert.SerializeObject(meta);
         }
 
