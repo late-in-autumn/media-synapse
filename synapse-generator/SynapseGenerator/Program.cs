@@ -1,5 +1,6 @@
 ﻿using SynapseGenerator.AbstractClasses;
 using SynapseGenerator.CombineSynapse;
+using SynapseGenerator.ConvertFormats;
 using SynapseGenerator.StillsSynapse;
 using SynapseGenerator.VideoSynapse;
 using System;
@@ -14,8 +15,19 @@ namespace SynapseGenerator
             string videoFileName = args[0];
             string stillsFolderName = args[1];
             string combineFolderName = args[2];
+            string stillsRGBInput = args[3];
+            string stillsRGBOutput = args[4];
             Console.WriteLine($"Input video file: {videoFileName}");
             Console.WriteLine($"Input stills folder: {stillsFolderName}");
+            Console.WriteLine($"RGB-format stills input: {stillsRGBInput}");
+            Console.WriteLine($"Converted stills output: {stillsRGBOutput}");
+
+            Console.WriteLine("==================================");
+
+            // convert RGB-format meda
+            Console.WriteLine("Converting RGB-format inputs to standard formats");
+            Driver convert = new ConvertFormatsDriver(stillsRGBInput, stillsRGBOutput);
+            convert.Execute();
 
             Console.WriteLine("==================================");
 
