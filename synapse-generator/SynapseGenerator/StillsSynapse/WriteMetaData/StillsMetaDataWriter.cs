@@ -42,7 +42,7 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
             IndividualSynapseStruct meta = new IndividualSynapseStruct()
             {
                 SourceType = "stills",
-                ImageWidth = 352 * SynapseStills.LongCount(),
+                ImageWidth = Constants.Constants.SYNAPSE_WIDTH * SynapseStills.LongCount(),
                 NumberOfShots = SynapseStills.LongCount(),
                 ShotFileNames = SynapseStills
             };

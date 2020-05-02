@@ -59,7 +59,7 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
             {
                 SourceType = "video",
                 SourceFileName = BaseName,
-                ImageWidth = 352 * frameNumbers.LongCount(),
+                ImageWidth = Constants.Constants.SYNAPSE_WIDTH * frameNumbers.LongCount(),
                 NumberOfScenes = frameNumbers.LongCount(),
                 SceneStartFrameNumbers = frameNumbers
             };

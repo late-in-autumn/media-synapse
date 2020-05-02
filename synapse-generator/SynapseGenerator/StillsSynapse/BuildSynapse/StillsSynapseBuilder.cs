@@ -28,7 +28,11 @@ namespace SynapseGenerator.StillsSynapse.BuildSynapse
             // only stitch the source images for now
             using var images = new MagickImageCollection();
             foreach (var i in SynapseStills)
-                images.Add(new MagickImage(i));
+            {
+                var img = new MagickImage(i);
+                img.Scale(Constants.Constants.SYNAPSE_WIDTH, Constants.Constants.SYNAPSE_HEIGHT);
+                images.Add(img);
+            }
 
             // stitch horizontally as demonstrated in the assignment example
             using var result = images.AppendHorizontally();
