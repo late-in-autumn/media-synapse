@@ -17,16 +17,21 @@ namespace SynapseGenerator
             string combineFolderName = args[2];
             string stillsRGBInput = args[3];
             string stillsRGBOutput = args[4];
+            string videoSequenceInput = args[5];
+            string videoFileOutput = args[6];
             Console.WriteLine($"Input video file: {videoFileName}");
             Console.WriteLine($"Input stills folder: {stillsFolderName}");
             Console.WriteLine($"RGB-format stills input: {stillsRGBInput}");
             Console.WriteLine($"Converted stills output: {stillsRGBOutput}");
+            Console.WriteLine($"RGB-format video sequence input: {videoSequenceInput}");
+            Console.WriteLine($"Converted video file output: {videoFileOutput}");
 
             Console.WriteLine("==================================");
 
             // convert RGB-format meda
             Console.WriteLine("Converting RGB-format inputs to standard formats");
-            Driver convert = new ConvertFormatsDriver(stillsRGBInput, stillsRGBOutput);
+            Driver convert = new ConvertFormatsDriver(stillsRGBInput, stillsRGBOutput,
+                videoSequenceInput, videoFileOutput);
             convert.Execute();
 
             Console.WriteLine("==================================");

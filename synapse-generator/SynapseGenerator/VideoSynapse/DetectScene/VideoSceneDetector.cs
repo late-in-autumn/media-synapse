@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace SynapseGenerator.VideoSynapse.DetectScene
@@ -6,9 +7,9 @@ namespace SynapseGenerator.VideoSynapse.DetectScene
     class VideoSceneDetector
     {
         // executable name
-        private static readonly string EXE_NAME = @"scenedetect.exe";
+        private static readonly string SCENEDETECT_BIN = @"scenedetect";
         // executable arguments template
-        private static readonly string EXE_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/stats.csv detect-content -t {3} -m {4} list-scenes -f {0}/{1}/scenes.csv save-images -p -c 9 -n 2 -o {0}/{1}/imgs split-video --copy -o {0}/{1}/scenes";
+        private static readonly string SCENEDENECT_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/stats.csv detect-content -t {3} -m {4} list-scenes -f {0}/{1}/scenes.csv save-images -p -c 9 -n 2 -o {0}/{1}/imgs split-video --copy -o {0}/{1}/scenes";
         // scene detection threshold
         private static readonly string SCENE_DETECTION_THRESHOLD = "16";
         // min scene length
@@ -40,19 +41,18 @@ namespace SynapseGenerator.VideoSynapse.DetectScene
         public void Detect()
         {
             // invode PySceneDetect to analyze the video file
-            using System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = EXE_NAME;
+            using var proc = new Process();
+            proc.StartInfo.FileName = SCENEDETECT_BIN;
             proc.StartInfo.Arguments =
-                String.Format(EXE_ARG_TEMPLATE,
+                String.Format(SCENEDENECT_ARG_TEMPLATE,
                 FolderName, BaseName, ExtName,
                 SCENE_DETECTION_THRESHOLD, MIN_SCENE_LENGTH);
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.CreateNoWindow = true;
             proc.Start();
-            string output = proc.StandardOutput.ReadToEnd();
-            Console.WriteLine(output);
+            Console.WriteLine(proc.StandardOutput.ReadToEnd());
             proc.WaitForExit();
         }
     }
