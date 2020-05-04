@@ -12,7 +12,7 @@ namespace MediaFileConverter.StillsSynapse.SelectSynapseStills
         // only accept JPEGs for stills synapse for now
         private static readonly string INPUT_IMGS = "*.jpg";
         // threshold for histogram similarity
-        private static readonly double HISTOGRAM_SIMILARITY = 0.5;
+        private static readonly double HISTOGRAM_SIMILARITY = 0.24;
 
         // where the source stills are located
         private readonly string InputFolder;
