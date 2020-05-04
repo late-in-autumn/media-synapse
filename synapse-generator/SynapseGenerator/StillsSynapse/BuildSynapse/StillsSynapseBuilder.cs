@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SynapseGenerator.StillsSynapse.BuildSynapse
+namespace MediaFileConverter.StillsSynapse.BuildSynapse
 {
     class StillsSynapseBuilder
     {

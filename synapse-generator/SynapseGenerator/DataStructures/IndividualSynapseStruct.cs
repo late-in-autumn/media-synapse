@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SynapseGenerator.DataStructures
+namespace MediaFileConverter.DataStructures
 {
     class IndividualSynapseStruct
     {

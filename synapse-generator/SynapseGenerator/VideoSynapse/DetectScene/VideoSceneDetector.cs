@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace SynapseGenerator.VideoSynapse.DetectScene
+namespace MediaFileConverter.VideoSynapse.DetectScene
 {
     class VideoSceneDetector
     {

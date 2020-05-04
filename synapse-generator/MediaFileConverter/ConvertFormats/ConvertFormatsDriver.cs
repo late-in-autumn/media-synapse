@@ -1,11 +1,12 @@
-﻿using SynapseGenerator.AbstractClasses;
-using SynapseGenerator.ConvertFormats.ConvertRGBToBitmap;
-using SynapseGenerator.ConvertFormats.ConvertSequenceToVideo;
+﻿using MediaFileConverter.AbstractClasses;
+using MediaFileConverter.ConvertFormats.ConvertRGBToBitmap;
+using MediaFileConverter.ConvertFormats.ConvertSequenceToVideo;
 using System;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading.Tasks;
 
-namespace SynapseGenerator.ConvertFormats
+namespace MediaFileConverter.ConvertFormats
 {
     class ConvertFormatsDriver : Driver
     {
@@ -15,9 +16,9 @@ namespace SynapseGenerator.ConvertFormats
         private readonly string VideoOutputFileName;
 
         public ConvertFormatsDriver(string stillsInputFolder,
-                                    string stillsOutputFolder,
-                                    string videoInputSequenceFolder,
-                                    string videoOutputFileName)
+            string stillsOutputFolder,
+            string videoInputSequenceFolder,
+            string videoOutputFileName)
         {
             if (String.IsNullOrWhiteSpace(stillsInputFolder))
             {
@@ -58,15 +59,15 @@ namespace SynapseGenerator.ConvertFormats
         {
             string[] inputFiles = Directory.GetFiles(StillsInputFolder,
                 Constants.Constants.RGB_FILE_PATTERN);
-            foreach (var i in inputFiles)
+            Parallel.ForEach(inputFiles, i =>
             {
                 RGBToBitmapConverter converter
                     = new RGBToBitmapConverter(i,
                     Path.Join(
-                        StillsOutputFolder, Path.GetFileNameWithoutExtension(i) + ".png"),
-                    ImageFormat.Png);
+                        StillsOutputFolder, Path.GetFileNameWithoutExtension(i) + ".jpg"),
+                    ImageFormat.Jpeg);
                 converter.Convert();
-            }
+            });
         }
 
         private void ConvertVideo()

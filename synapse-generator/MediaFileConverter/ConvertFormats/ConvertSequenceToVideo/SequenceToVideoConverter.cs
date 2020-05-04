@@ -1,15 +1,16 @@
-﻿using SynapseGenerator.ConvertFormats.ConvertRGBToBitmap;
+﻿using MediaFileConverter.ConvertFormats.ConvertRGBToBitmap;
 using System;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading.Tasks;
 
-namespace SynapseGenerator.ConvertFormats.ConvertSequenceToVideo
+namespace MediaFileConverter.ConvertFormats.ConvertSequenceToVideo
 {
     class SequenceToVideoConverter
     {
         private static readonly string FFMPEG_BIN = @"ffmpeg";
-        private static readonly string FFMPEG_ARG_TEMPLATE = "-r {0} -f image2 -s 352x288 -i {1}/image-%04d.png -vcodec libx264 -crf 20 -pix_fmt yuv420p {2}";
+        private static readonly string FFMPEG_ARG_TEMPLATE = "-r {0} -f image2 -s 352x288 -i {1}/image-%04d.jpg -c:v mjpeg -q:v 1 -pix_fmt + {2}";
         private static readonly string FRAME_RATE = "29.97";
 
         private readonly string InputSequenceFolder;
@@ -41,15 +42,15 @@ namespace SynapseGenerator.ConvertFormats.ConvertSequenceToVideo
         {
             string[] rgbSequences = Directory.GetFiles(InputSequenceFolder,
                 Constants.Constants.RGB_FILE_PATTERN);
-            foreach (var i in rgbSequences)
+            Parallel.ForEach(rgbSequences, s =>
             {
                 RGBToBitmapConverter converter
-                    = new RGBToBitmapConverter(i,
+                    = new RGBToBitmapConverter(s,
                     Path.Join(
-                        InputSequenceFolder, Path.GetFileNameWithoutExtension(i) + ".png"),
-                    ImageFormat.Png);
+                        InputSequenceFolder, Path.GetFileNameWithoutExtension(s) + ".jpg"),
+                    ImageFormat.Jpeg);
                 converter.Convert();
-            }
+            });
         }
 
         private void BitmapSequenceToVideo()

@@ -1,11 +1,11 @@
-﻿using SynapseGenerator.AbstractClasses;
-using SynapseGenerator.StillsSynapse.BuildSynapse;
-using SynapseGenerator.StillsSynapse.SelectSynapseStills;
-using SynapseGenerator.StillsSynapse.WriteMetaData;
+﻿using MediaFileConverter.AbstractClasses;
+using MediaFileConverter.StillsSynapse.BuildSynapse;
+using MediaFileConverter.StillsSynapse.SelectSynapseStills;
+using MediaFileConverter.StillsSynapse.WriteMetaData;
 using System;
 using System.Collections.Generic;
 
-namespace SynapseGenerator.StillsSynapse
+namespace MediaFileConverter.StillsSynapse
 {
     class StillsSynapseDriver : Driver
     {

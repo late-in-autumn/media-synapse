@@ -2,7 +2,7 @@
   "profiles": {
     "LocalTest": {
       "commandName": "Project",
-      "commandLineArgs": "./video_2.avi ./stills ./",
+      "commandLineArgs": "./stills_in ./stills_out ./video_2_sequences ./video_2_combined.mkv",
       "workingDirectory": "C:\\Users\\SijieBu.AzureAD\\source\\repos\\media-synapse\\data-file-examples"
     }
   }

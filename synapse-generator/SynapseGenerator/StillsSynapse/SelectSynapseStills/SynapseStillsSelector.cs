@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace SynapseGenerator.StillsSynapse.SelectSynapseStills
+namespace MediaFileConverter.StillsSynapse.SelectSynapseStills
 {
     class SynapseStillsSelector
     {

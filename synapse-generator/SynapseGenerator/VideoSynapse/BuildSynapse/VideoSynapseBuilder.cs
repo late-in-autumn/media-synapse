@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace SynapseGenerator.VideoSynapse.BuildSynapse
+namespace MediaFileConverter.VideoSynapse.BuildSynapse
 {
     class VideoSynapseBuilder
     {

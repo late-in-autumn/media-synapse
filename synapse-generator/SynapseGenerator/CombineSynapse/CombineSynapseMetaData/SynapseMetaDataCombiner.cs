@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using SynapseGenerator.DataStructures;
+using MediaFileConverter.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace SynapseGenerator.CombineSynapse.CombineSynapseMetaData
+namespace MediaFileConverter.CombineSynapse.CombineSynapseMetaData
 {
     class SynapseMetaDataCombiner
     {

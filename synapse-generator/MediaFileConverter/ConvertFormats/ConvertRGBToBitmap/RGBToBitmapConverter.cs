@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace SynapseGenerator.ConvertFormats.ConvertRGBToBitmap
+namespace MediaFileConverter.ConvertFormats.ConvertRGBToBitmap
 {
     class RGBToBitmapConverter
     {

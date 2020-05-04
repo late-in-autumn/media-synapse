@@ -1,11 +1,11 @@
-﻿using SynapseGenerator.AbstractClasses;
-using SynapseGenerator.VideoSynapse.BuildSynapse;
-using SynapseGenerator.VideoSynapse.DetectScene;
-using SynapseGenerator.VideoSynapse.WriteMetaData;
+﻿using MediaFileConverter.AbstractClasses;
+using MediaFileConverter.VideoSynapse.BuildSynapse;
+using MediaFileConverter.VideoSynapse.DetectScene;
+using MediaFileConverter.VideoSynapse.WriteMetaData;
 using System;
 using System.IO;
 
-namespace SynapseGenerator.VideoSynapse
+namespace MediaFileConverter.VideoSynapse
 {
     class VideoSynapseDriver : Driver
     {
