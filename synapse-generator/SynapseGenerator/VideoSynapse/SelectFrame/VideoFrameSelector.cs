@@ -4,7 +4,7 @@ using SynapseGenerator.Misc.ExtensionMethods;
 using System;
 using System.Linq;
 
-namespace SynapseGenerator.VideoSynapse.SelectFrames
+namespace SynapseGenerator.VideoSynapse.SelectFrame
 {
     class VideoFrameSelector
     {

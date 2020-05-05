@@ -1,7 +1,7 @@
 ﻿using SynapseGenerator.Misc.AbstractClasses;
 using SynapseGenerator.VideoSynapse.BuildSynapse;
 using SynapseGenerator.VideoSynapse.DetectScene;
-using SynapseGenerator.VideoSynapse.SelectFrames;
+using SynapseGenerator.VideoSynapse.SelectFrame;
 using SynapseGenerator.VideoSynapse.WriteMetaData;
 using System;
 using System.IO;
