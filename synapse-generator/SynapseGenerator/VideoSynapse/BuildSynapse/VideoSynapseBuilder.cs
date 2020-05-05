@@ -2,12 +2,12 @@
 using System;
 using System.IO;
 
-namespace MediaFileConverter.VideoSynapse.BuildSynapse
+namespace SynapseGenerator.VideoSynapse.BuildSynapse
 {
     class VideoSynapseBuilder
     {
         // only accept PNGs for now
-        private static readonly string INPUT_IMGS = "*-01.png";
+        private static readonly string INPUT_IMGS = "*.png";
 
         // the folder where the extracted source images reside
         private readonly string InputFolder;
@@ -26,7 +26,7 @@ namespace MediaFileConverter.VideoSynapse.BuildSynapse
                 String.Empty : Path.GetDirectoryName(inputFileName);
             string baseName =
                 Path.GetFileNameWithoutExtension(inputFileName);
-            InputFolder = Path.Join(dirName, baseName, "imgs");
+            InputFolder = Path.Join(dirName, baseName, "frames");
             OutputFile = Path.Join(dirName, $"{baseName}_synapse.png");
         }
 
@@ -39,7 +39,8 @@ namespace MediaFileConverter.VideoSynapse.BuildSynapse
             foreach (var i in imgs)
             {
                 var img = new MagickImage(i);
-                img.Scale(Constants.Constants.SYNAPSE_WIDTH, Constants.Constants.SYNAPSE_HEIGHT);
+                img.Scale(Misc.Constants.Constants.SYNAPSE_WIDTH,
+                    Misc.Constants.Constants.SYNAPSE_HEIGHT);
                 images.Add(img);
             }
 

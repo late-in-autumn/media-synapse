@@ -30,7 +30,8 @@ namespace MediaFileConverter.ConvertFormats.ConvertRGBToBitmap
             InputFileName = inputFileName;
             OutputFileName = outputFileName;
             OutputFormat = outputFormat ?? throw new ArgumentNullException(nameof(outputFormat));
-            Image = new Bitmap(Constants.Constants.INPUT_WIDTH, Constants.Constants.INPUT_HEIGHT);
+            Image = new Bitmap(Misc.Constants.Constants.INPUT_WIDTH,
+                Misc.Constants.Constants.INPUT_HEIGHT);
         }
 
         public void Convert()
@@ -41,8 +42,8 @@ namespace MediaFileConverter.ConvertFormats.ConvertRGBToBitmap
 
         private void ReadRGBIntoBitmap()
         {
-            int width = Constants.Constants.INPUT_WIDTH;
-            int height = Constants.Constants.INPUT_HEIGHT;
+            int width = Misc.Constants.Constants.INPUT_WIDTH;
+            int height = Misc.Constants.Constants.INPUT_HEIGHT;
             int frameLength = width * height * 3;
             FileStream source = new FileStream(InputFileName, FileMode.Open, FileAccess.Read)
             {

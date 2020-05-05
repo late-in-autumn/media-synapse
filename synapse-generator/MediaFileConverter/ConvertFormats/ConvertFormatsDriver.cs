@@ -1,4 +1,4 @@
-﻿using MediaFileConverter.AbstractClasses;
+﻿using MediaFileConverter.Misc.AbstractClasses;
 using MediaFileConverter.ConvertFormats.ConvertRGBToBitmap;
 using MediaFileConverter.ConvertFormats.ConvertSequenceToVideo;
 using System;
@@ -58,7 +58,7 @@ namespace MediaFileConverter.ConvertFormats
         private void ConvertStills()
         {
             string[] inputFiles = Directory.GetFiles(StillsInputFolder,
-                Constants.Constants.RGB_FILE_PATTERN);
+                Misc.Constants.Constants.RGB_FILE_PATTERN);
             Parallel.ForEach(inputFiles, i =>
             {
                 RGBToBitmapConverter converter

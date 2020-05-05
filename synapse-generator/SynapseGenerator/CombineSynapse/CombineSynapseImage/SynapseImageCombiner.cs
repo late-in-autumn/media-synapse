@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace MediaFileConverter.CombineSynapse.CombineSynapseImage
+namespace SynapseGenerator.CombineSynapse.CombineSynapseImage
 {
     class SynapseImageCombiner
     {

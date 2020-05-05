@@ -1,4 +1,4 @@
-﻿namespace MediaFileConverter.Constants
+﻿namespace MediaFileConverter.Misc.Constants
 {
     class Constants
     {

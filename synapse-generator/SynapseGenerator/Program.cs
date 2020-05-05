@@ -1,10 +1,10 @@
-﻿using MediaFileConverter.AbstractClasses;
-using MediaFileConverter.CombineSynapse;
-using MediaFileConverter.StillsSynapse;
-using MediaFileConverter.VideoSynapse;
+﻿using SynapseGenerator.Misc.AbstractClasses;
+using SynapseGenerator.CombineSynapse;
+using SynapseGenerator.StillsSynapse;
+using SynapseGenerator.VideoSynapse;
 using System;
 
-namespace MediaFileConverter
+namespace SynapseGenerator
 {
     class Program
     {

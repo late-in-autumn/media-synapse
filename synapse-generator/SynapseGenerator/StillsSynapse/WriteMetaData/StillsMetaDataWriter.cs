@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using MediaFileConverter.DataStructures;
+using SynapseGenerator.Misc.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace MediaFileConverter.StillsSynapse.WriteMetaData
+namespace SynapseGenerator.StillsSynapse.WriteMetaData
 {
     class StillsMetaDataWriter
     {
@@ -47,7 +47,7 @@ namespace MediaFileConverter.StillsSynapse.WriteMetaData
             IndividualSynapseStruct meta = new IndividualSynapseStruct()
             {
                 SourceType = "stills",
-                ImageWidth = Constants.Constants.SYNAPSE_WIDTH * SynapseStills.LongCount(),
+                ImageWidth = Misc.Constants.Constants.SYNAPSE_WIDTH * SynapseStills.LongCount(),
                 NumberOfShots = SynapseStillsBaseName.LongCount(),
                 ShotFileNames = SynapseStillsBaseName
             };

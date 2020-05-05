@@ -41,7 +41,7 @@ namespace MediaFileConverter.ConvertFormats.ConvertSequenceToVideo
         private void RGBSequenceToBitmap()
         {
             string[] rgbSequences = Directory.GetFiles(InputSequenceFolder,
-                Constants.Constants.RGB_FILE_PATTERN);
+                Misc.Constants.Constants.RGB_FILE_PATTERN);
             Parallel.ForEach(rgbSequences, s =>
             {
                 RGBToBitmapConverter converter

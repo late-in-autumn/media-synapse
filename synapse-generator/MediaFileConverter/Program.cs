@@ -1,4 +1,4 @@
-﻿using MediaFileConverter.AbstractClasses;
+﻿using MediaFileConverter.Misc.AbstractClasses;
 using MediaFileConverter.ConvertFormats;
 using System;
 

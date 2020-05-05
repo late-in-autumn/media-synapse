@@ -3,9 +3,8 @@ using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-namespace MediaFileConverter.StillsSynapse.SelectSynapseStills
+namespace SynapseGenerator.StillsSynapse.SelectSynapseStills
 {
     class SynapseStillsSelector
     {
@@ -66,7 +65,7 @@ namespace MediaFileConverter.StillsSynapse.SelectSynapseStills
             }
 
             foreach (var g in imageGroups)
-                SelectedImages.Add(g.First());
+                SelectedImages.Add(g[0]);
         }
 
         private bool CompareHistogram(string imgOne, string imgTwo)
@@ -79,9 +78,9 @@ namespace MediaFileConverter.StillsSynapse.SelectSynapseStills
             DenseHistogram imageOneBlueHist = new DenseHistogram(64, new RangeF(0, 64));
             DenseHistogram imageOneGreenHist = new DenseHistogram(64, new RangeF(0, 64));
             DenseHistogram imageOneRedHist = new DenseHistogram(64, new RangeF(0, 64));
-            Image<Gray, Byte> imageOneBlue = imageOne[0];
+            Image<Gray, Byte> imageOneBlue = imageOne[2];
             Image<Gray, Byte> imageOneGreen = imageOne[1];
-            Image<Gray, Byte> imageOneRed = imageOne[2];
+            Image<Gray, Byte> imageOneRed = imageOne[0];
 
             // calculate histogram of image one
             imageOneBlueHist.Calculate(new Image<Gray, Byte>[] { imageOneBlue }, true, null);
@@ -92,9 +91,9 @@ namespace MediaFileConverter.StillsSynapse.SelectSynapseStills
             DenseHistogram imageTwoBlueHist = new DenseHistogram(64, new RangeF(0, 64));
             DenseHistogram imageTwoGreenHist = new DenseHistogram(64, new RangeF(0, 64));
             DenseHistogram imageTwoRedHist = new DenseHistogram(64, new RangeF(0, 64));
-            Image<Gray, Byte> imageTwoBlue = imageTwo[0];
+            Image<Gray, Byte> imageTwoBlue = imageTwo[2];
             Image<Gray, Byte> imageTwoGreen = imageTwo[1];
-            Image<Gray, Byte> imageTwoRed = imageTwo[2];
+            Image<Gray, Byte> imageTwoRed = imageTwo[0];
 
             // calculate histogram of image two
             imageTwoBlueHist.Calculate(new Image<Gray, Byte>[] { imageTwoBlue }, true, null);

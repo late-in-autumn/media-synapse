@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MediaFileConverter.StillsSynapse.BuildSynapse
+namespace SynapseGenerator.StillsSynapse.BuildSynapse
 {
     class StillsSynapseBuilder
     {
@@ -30,7 +30,8 @@ namespace MediaFileConverter.StillsSynapse.BuildSynapse
             foreach (var i in SynapseStills)
             {
                 var img = new MagickImage(i);
-                img.Scale(Constants.Constants.SYNAPSE_WIDTH, Constants.Constants.SYNAPSE_HEIGHT);
+                img.Scale(Misc.Constants.Constants.SYNAPSE_WIDTH,
+                    Misc.Constants.Constants.SYNAPSE_HEIGHT);
                 images.Add(img);
             }
 

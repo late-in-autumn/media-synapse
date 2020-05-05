@@ -1,4 +1,4 @@
-﻿namespace MediaFileConverter.AbstractClasses
+﻿namespace SynapseGenerator.Misc.AbstractClasses
 {
     abstract class Driver
     {

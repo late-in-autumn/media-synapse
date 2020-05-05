@@ -2,18 +2,18 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace MediaFileConverter.VideoSynapse.DetectScene
+namespace SynapseGenerator.VideoSynapse.DetectScene
 {
     class VideoSceneDetector
     {
         // executable name
         private static readonly string SCENEDETECT_BIN = @"scenedetect";
         // executable arguments template
-        private static readonly string SCENEDENECT_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/stats.csv detect-content -t {3} -m {4} list-scenes -f {0}/{1}/scenes.csv save-images -p -c 9 -n 2 -o {0}/{1}/imgs split-video --copy -o {0}/{1}/scenes";
+        private static readonly string SCENEDENECT_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/stats.csv detect-content -t {3} -m {4} list-scenes -f {0}/{1}/scenes.csv split-video --copy -o {0}/{1}/scenes";
         // scene detection threshold
-        private static readonly string SCENE_DETECTION_THRESHOLD = "16";
+        private static readonly string SCENE_DETECTION_THRESHOLD = "18";
         // min scene length
-        private static readonly string MIN_SCENE_LENGTH = "00:00:06";
+        private static readonly string MIN_SCENE_LENGTH = "00:00:08";
 
         // the directory where the video file is located
         private readonly string FolderName;

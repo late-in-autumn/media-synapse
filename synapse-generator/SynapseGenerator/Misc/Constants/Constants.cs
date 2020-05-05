@@ -1,4 +1,4 @@
-﻿namespace MediaFileConverter.Constants
+﻿namespace SynapseGenerator.Misc.Constants
 {
     class Constants
     {

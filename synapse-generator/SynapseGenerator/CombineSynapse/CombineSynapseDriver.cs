@@ -1,9 +1,9 @@
-﻿using MediaFileConverter.AbstractClasses;
-using MediaFileConverter.CombineSynapse.CombineSynapseImage;
-using MediaFileConverter.CombineSynapse.CombineSynapseMetaData;
+﻿using SynapseGenerator.Misc.AbstractClasses;
+using SynapseGenerator.CombineSynapse.CombineSynapseImage;
+using SynapseGenerator.CombineSynapse.CombineSynapseMetaData;
 using System;
 
-namespace MediaFileConverter.CombineSynapse
+namespace SynapseGenerator.CombineSynapse
 {
     class CombineSynapseDriver : Driver
     {
