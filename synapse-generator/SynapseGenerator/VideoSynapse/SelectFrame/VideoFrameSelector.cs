@@ -52,7 +52,7 @@ namespace SynapseGenerator.VideoSynapse.SelectFrame
             while ((buffer = InputVideoFile.QueryFrame()) != null)
             {
                 double colorfulness = ComputeFrameColorfulness(buffer);
-                if (colorfulness > maxColorfulness)
+                if (colorfulness >= maxColorfulness)
                 {
                     maxColorfulness = colorfulness;
                     mostColorfulFrame = buffer;
