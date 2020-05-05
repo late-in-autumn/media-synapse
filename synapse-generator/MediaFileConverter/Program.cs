@@ -1,5 +1,5 @@
-﻿using MediaFileConverter.Misc.AbstractClasses;
-using MediaFileConverter.ConvertFormats;
+﻿using MediaFileConverter.ConvertFormats;
+using MediaFileConverter.Misc.AbstractClasses;
 using System;
 
 namespace MediaFileConverter

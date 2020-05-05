@@ -53,8 +53,8 @@ namespace MediaFileConverter.ConvertFormats.ConvertRGBToBitmap
             int index = 0;
 
             source.Read(buffer);
-            for (int y = 0; y < height; y ++)
-                for (int x = 0; x < width; x ++)
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
                 {
                     byte r = buffer[index];
                     byte g = buffer[index + height * width];

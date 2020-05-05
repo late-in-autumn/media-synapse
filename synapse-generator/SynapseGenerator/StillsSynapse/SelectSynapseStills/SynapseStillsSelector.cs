@@ -15,7 +15,7 @@ namespace SynapseGenerator.StillsSynapse.SelectSynapseStills
 
         // where the source stills are located
         private readonly string InputFolder;
-        
+
         // list of selected stills for synapse
         private List<string> SelectedImages;
 
@@ -45,14 +45,16 @@ namespace SynapseGenerator.StillsSynapse.SelectSynapseStills
                 images.Add((fileName: i, visited: false));
             List<List<string>> imageGroups = new List<List<string>>();
 
-            for (int i = 0; i < images.Count; i ++)
+            for (int i = 0; i < images.Count; i++)
             {
                 if (!images[i].visited)
                 {
-                    List<string> group = new List<string>();
-                    group.Add(images[i].fileName);
+                    List<string> group = new List<string>
+                    {
+                        images[i].fileName
+                    };
                     images[i] = (images[i].fileName, true);
-                    for (int j = 0; j < images.Count; j ++)
+                    for (int j = 0; j < images.Count; j++)
                     {
                         if (CompareHistogram(images[i].fileName, images[j].fileName))
                         {

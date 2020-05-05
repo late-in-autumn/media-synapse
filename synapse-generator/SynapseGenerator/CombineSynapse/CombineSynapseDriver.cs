@@ -1,6 +1,6 @@
-﻿using SynapseGenerator.Misc.AbstractClasses;
-using SynapseGenerator.CombineSynapse.CombineSynapseImage;
+﻿using SynapseGenerator.CombineSynapse.CombineSynapseImage;
 using SynapseGenerator.CombineSynapse.CombineSynapseMetaData;
+using SynapseGenerator.Misc.AbstractClasses;
 using System;
 
 namespace SynapseGenerator.CombineSynapse

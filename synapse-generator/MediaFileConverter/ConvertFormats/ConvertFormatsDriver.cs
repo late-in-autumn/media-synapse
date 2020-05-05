@@ -1,6 +1,6 @@
-﻿using MediaFileConverter.Misc.AbstractClasses;
-using MediaFileConverter.ConvertFormats.ConvertRGBToBitmap;
+﻿using MediaFileConverter.ConvertFormats.ConvertRGBToBitmap;
 using MediaFileConverter.ConvertFormats.ConvertSequenceToVideo;
+using MediaFileConverter.Misc.AbstractClasses;
 using System;
 using System.Drawing.Imaging;
 using System.IO;

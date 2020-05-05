@@ -1,5 +1,5 @@
-﻿using SynapseGenerator.Misc.AbstractClasses;
-using SynapseGenerator.CombineSynapse;
+﻿using SynapseGenerator.CombineSynapse;
+using SynapseGenerator.Misc.AbstractClasses;
 using SynapseGenerator.StillsSynapse;
 using SynapseGenerator.VideoSynapse;
 using System;
