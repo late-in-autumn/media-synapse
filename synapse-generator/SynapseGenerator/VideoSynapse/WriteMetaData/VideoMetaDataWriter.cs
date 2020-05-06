@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json;
+using SynapseGenerator.Misc.Constants;
 using SynapseGenerator.Misc.DataStructures;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace SynapseGenerator.VideoSynapse.WriteMetaData
             {
                 SourceType = "video",
                 SourceFileName = BaseName,
-                ImageWidth = Misc.Constants.Constants.SYNAPSE_WIDTH * frameNumbers.LongCount(),
+                ImageWidth = Constants.SYNAPSE_WIDTH * frameNumbers.LongCount(),
                 NumberOfScenes = frameNumbers.LongCount(),
                 SceneStartFrameNumbers = frameNumbers
             };

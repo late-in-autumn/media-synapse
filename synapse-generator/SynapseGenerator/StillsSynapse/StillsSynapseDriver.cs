@@ -4,6 +4,7 @@ using SynapseGenerator.StillsSynapse.SelectSynapseStills;
 using SynapseGenerator.StillsSynapse.WriteMetaData;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace SynapseGenerator.StillsSynapse
 {
@@ -40,7 +41,8 @@ namespace SynapseGenerator.StillsSynapse
             // write the metadata
             Console.WriteLine("Writing stills synapse metadata...");
             StillsMetaDataWriter writer =
-                new StillsMetaDataWriter(OutputBaseName, selected);
+                new StillsMetaDataWriter(
+                    new DirectoryInfo(InputFolder).Name, OutputBaseName, selected);
             writer.Write();
 
         }

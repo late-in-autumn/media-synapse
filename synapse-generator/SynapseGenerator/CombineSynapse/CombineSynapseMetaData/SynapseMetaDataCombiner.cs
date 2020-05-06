@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SynapseGenerator.Misc.Constants;
 using SynapseGenerator.Misc.DataStructures;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,7 @@ namespace SynapseGenerator.CombineSynapse.CombineSynapseMetaData
 {
     class SynapseMetaDataCombiner
     {
-        private static readonly string VIDEO_SYNAPSE_FILENAME = "video_*_synapse.json";
-        private static readonly string STILLS_SYNAPSE_FILENAME = "stills_synapse.json";
+        private static readonly string FILE_EXT = ".json";
 
         private readonly string SynapseFolder;
 
@@ -37,8 +37,10 @@ namespace SynapseGenerator.CombineSynapse.CombineSynapseMetaData
             long totalWidth = 0;
             List<long> synapseBoundries = new List<long>();
             List<IndividualSynapseStruct> individualSources = new List<IndividualSynapseStruct>();
-            string[] videoSynapseFiles = Directory.GetFiles(SynapseFolder, VIDEO_SYNAPSE_FILENAME);
-            string[] stillsSynapseFiles = Directory.GetFiles(SynapseFolder, STILLS_SYNAPSE_FILENAME);
+            string[] videoSynapseFiles = Directory.GetFiles(
+                SynapseFolder, Constants.VIDEO_SYNAPSE_BASENAME + FILE_EXT);
+            string[] stillsSynapseFiles = Directory.GetFiles
+                (SynapseFolder, Constants.STILLS_SYNAPSE_BASENAME + FILE_EXT);
 
             foreach (var v in videoSynapseFiles)
             {
@@ -71,7 +73,10 @@ namespace SynapseGenerator.CombineSynapse.CombineSynapseMetaData
         {
             string serialized
                 = combined is null ? String.Empty : JsonConvert.SerializeObject(combined);
-            File.WriteAllText(Path.Join(SynapseFolder, "combined_synapse.json"), serialized);
+            File.WriteAllText(
+                Path.Join(
+                    SynapseFolder, Constants.COMBINED_SYNAPSE_BASENAME + FILE_EXT),
+                serialized);
         }
     }
 }

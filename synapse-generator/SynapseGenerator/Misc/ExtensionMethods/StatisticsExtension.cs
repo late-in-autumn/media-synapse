@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SynapseGenerator.Misc.ExtensionMethods
 {
-    public static class Extensions
+    static class StatisticsExtension
     {
         public static double StdDev(this IEnumerable<double> values)
         {

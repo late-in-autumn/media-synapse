@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using SynapseGenerator.Misc.Constants;
 using System;
 using System.Collections.Generic;
 
@@ -30,8 +31,7 @@ namespace SynapseGenerator.StillsSynapse.BuildSynapse
             foreach (var i in SynapseStills)
             {
                 var img = new MagickImage(i);
-                img.Scale(Misc.Constants.Constants.SYNAPSE_WIDTH,
-                    Misc.Constants.Constants.SYNAPSE_HEIGHT);
+                img.Scale(Constants.SYNAPSE_WIDTH, Constants.SYNAPSE_HEIGHT);
                 images.Add(img);
             }
 

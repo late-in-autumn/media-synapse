@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using SynapseGenerator.Misc.Constants;
 using System;
 using System.IO;
 
@@ -39,8 +40,7 @@ namespace SynapseGenerator.VideoSynapse.BuildSynapse
             foreach (var i in imgs)
             {
                 var img = new MagickImage(i);
-                img.Scale(Misc.Constants.Constants.SYNAPSE_WIDTH,
-                    Misc.Constants.Constants.SYNAPSE_HEIGHT);
+                img.Scale(Constants.SYNAPSE_WIDTH, Constants.SYNAPSE_HEIGHT);
                 images.Add(img);
             }
 

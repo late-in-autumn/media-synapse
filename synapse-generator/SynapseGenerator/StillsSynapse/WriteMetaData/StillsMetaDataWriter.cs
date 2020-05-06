@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SynapseGenerator.Misc.Constants;
 using SynapseGenerator.Misc.DataStructures;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
 {
     class StillsMetaDataWriter
     {
+        // the name of the input folder
+        private readonly string InputBaseName;
         // where the synapse metadata will be saved
         private readonly string OutputBaseName;
         // the stills selected to be included in the synapse
@@ -16,15 +19,21 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
 
         private string SerializedMeta;
 
-        public StillsMetaDataWriter(
+        public StillsMetaDataWriter(string inputBaseName,
             string outputBaseName,
             List<string> synapseStills)
         {
+            if (String.IsNullOrWhiteSpace(inputBaseName))
+            {
+                throw new ArgumentException("message", nameof(inputBaseName));
+            }
+
             if (String.IsNullOrWhiteSpace(outputBaseName))
             {
                 throw new ArgumentException("message", nameof(outputBaseName));
             }
 
+            InputBaseName = inputBaseName;
             OutputBaseName = outputBaseName;
             SynapseStills =
                 synapseStills ?? throw new ArgumentNullException(nameof(synapseStills));
@@ -47,7 +56,8 @@ namespace SynapseGenerator.StillsSynapse.WriteMetaData
             IndividualSynapseStruct meta = new IndividualSynapseStruct()
             {
                 SourceType = "stills",
-                ImageWidth = Misc.Constants.Constants.SYNAPSE_WIDTH * SynapseStills.LongCount(),
+                SourceFileName = InputBaseName,
+                ImageWidth = Constants.SYNAPSE_WIDTH * SynapseStills.LongCount(),
                 NumberOfShots = SynapseStillsBaseName.LongCount(),
                 ShotFileNames = SynapseStillsBaseName
             };

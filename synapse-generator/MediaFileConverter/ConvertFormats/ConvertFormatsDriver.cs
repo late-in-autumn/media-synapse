@@ -12,13 +12,13 @@ namespace MediaFileConverter.ConvertFormats
     {
         private readonly string StillsInputFolder;
         private readonly string StillsOutputFolder;
-        private readonly string VideoInputSequenceFolder;
-        private readonly string VideoOutputFileName;
+        private readonly string[] VideoInputSequenceFolders;
+        private readonly string[] VideoOutputFileNames;
 
         public ConvertFormatsDriver(string stillsInputFolder,
             string stillsOutputFolder,
-            string videoInputSequenceFolder,
-            string videoOutputFileName)
+            string[] videoInputSequenceFolders,
+            string[] videoOutputFileNames)
         {
             if (String.IsNullOrWhiteSpace(stillsInputFolder))
             {
@@ -30,20 +30,15 @@ namespace MediaFileConverter.ConvertFormats
                 throw new ArgumentException("message", nameof(stillsOutputFolder));
             }
 
-            if (String.IsNullOrWhiteSpace(videoInputSequenceFolder))
-            {
-                throw new ArgumentException("message", nameof(videoInputSequenceFolder));
-            }
-
-            if (String.IsNullOrWhiteSpace(videoOutputFileName))
-            {
-                throw new ArgumentException("message", nameof(videoOutputFileName));
-            }
 
             StillsInputFolder = stillsInputFolder;
             StillsOutputFolder = stillsOutputFolder;
-            VideoInputSequenceFolder = videoInputSequenceFolder;
-            VideoOutputFileName = videoOutputFileName;
+            VideoInputSequenceFolders
+                = videoInputSequenceFolders ?? throw new ArgumentNullException(
+                    nameof(videoInputSequenceFolders));
+            VideoOutputFileNames
+                = videoOutputFileNames ?? throw new ArgumentNullException(
+                    nameof(videoOutputFileNames));
             Directory.CreateDirectory(stillsOutputFolder);
         }
 
@@ -61,7 +56,7 @@ namespace MediaFileConverter.ConvertFormats
                 Misc.Constants.Constants.RGB_FILE_PATTERN);
             Parallel.ForEach(inputFiles, i =>
             {
-                RGBToBitmapConverter converter
+                var converter
                     = new RGBToBitmapConverter(i,
                     Path.Join(
                         StillsOutputFolder, Path.GetFileNameWithoutExtension(i) + ".jpg"),
@@ -72,9 +67,13 @@ namespace MediaFileConverter.ConvertFormats
 
         private void ConvertVideo()
         {
-            SequenceToVideoConverter converter
-                = new SequenceToVideoConverter(VideoInputSequenceFolder, VideoOutputFileName);
-            converter.Convert();
+            for (int i = 0; i < VideoInputSequenceFolders.Length; i++)
+            {
+                var converter
+                    = new SequenceToVideoConverter(
+                        VideoInputSequenceFolders[i], VideoOutputFileNames[i]);
+                converter.Convert();
+            }
         }
     }
 }

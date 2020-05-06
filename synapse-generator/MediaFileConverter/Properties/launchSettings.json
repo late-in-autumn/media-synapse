@@ -1,9 +1,14 @@
-﻿{
+{
   "profiles": {
-    "LocalTest": {
+    "ExampleSet": {
       "commandName": "Project",
-      "commandLineArgs": "./stills_in ./stills_out ./video_2_sequences ./video_2_combined.mkv",
-      "workingDirectory": "C:\\Users\\SijieBu.AzureAD\\source\\repos\\media-synapse\\data-file-examples"
+      "commandLineArgs": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\Exmaple_Set\\CSCI576ProjectMedia C:\\Users\\SijieBu.AzureAD\\CSCI576\\Exmaple_Set\\CSCI576ProjectMediaConverted",
+      "workingDirectory": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\Exmaple_Set\\CSCI576ProjectMedia"
+    },
+    "DayOne": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\StudentsUse_Dataset_Armenia\\StudentsUse_Dataset_Armenia C:\\Users\\SijieBu.AzureAD\\CSCI576\\StudentsUse_Dataset_Armenia\\StudentsUse_Dataset_Armenia_Converted",
+      "workingDirectory": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\StudentsUse_Dataset_Armenia\\StudentsUse_Dataset_Armenia"
     }
   }
 }

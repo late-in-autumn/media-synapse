@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using SynapseGenerator.Misc.Constants;
 using System;
 using System.IO;
 
@@ -6,8 +7,7 @@ namespace SynapseGenerator.CombineSynapse.CombineSynapseImage
 {
     class SynapseImageCombiner
     {
-        private static readonly string VIDEO_SYNAPSE_FILENAME = "video_*_synapse.png";
-        private static readonly string STILLS_SYNAPSE_FILENAME = "stills_synapse.png";
+        private static readonly string FILE_EXT = ".png";
 
         private readonly string SynapseFolder;
 
@@ -23,8 +23,10 @@ namespace SynapseGenerator.CombineSynapse.CombineSynapseImage
 
         public void Combine()
         {
-            string[] videoImgs = Directory.GetFiles(SynapseFolder, VIDEO_SYNAPSE_FILENAME);
-            string[] stillsImgs = Directory.GetFiles(SynapseFolder, STILLS_SYNAPSE_FILENAME);
+            string[] videoImgs = Directory.GetFiles(
+                SynapseFolder, Constants.VIDEO_SYNAPSE_BASENAME + FILE_EXT);
+            string[] stillsImgs = Directory.GetFiles(
+                SynapseFolder, Constants.STILLS_SYNAPSE_BASENAME + FILE_EXT);
             using var images = new MagickImageCollection();
             foreach (var v in videoImgs)
                 images.Add(new MagickImage(v));

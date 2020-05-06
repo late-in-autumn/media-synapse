@@ -11,9 +11,9 @@ namespace SynapseGenerator.VideoSynapse.DetectScene
         // executable arguments template
         private static readonly string SCENEDENECT_ARG_TEMPLATE = @"-i {0}/{1}{2} -s {0}/{1}/stats.csv detect-content -t {3} -m {4} list-scenes -f {0}/{1}/scenes.csv split-video --copy -o {0}/{1}/scenes";
         // scene detection threshold
-        private static readonly string SCENE_DETECTION_THRESHOLD = "18";
+        private static readonly string SCENE_DETECTION_THRESHOLD = "17";
         // min scene length
-        private static readonly string MIN_SCENE_LENGTH = "00:00:08";
+        private static readonly string MIN_SCENE_LENGTH = "00:00:07";
 
         // the directory where the video file is located
         private readonly string FolderName;
