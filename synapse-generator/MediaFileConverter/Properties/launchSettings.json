@@ -9,6 +9,10 @@
       "commandName": "Project",
       "commandLineArgs": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\StudentsUse_Dataset_Armenia\\StudentsUse_Dataset_Armenia C:\\Users\\SijieBu.AzureAD\\CSCI576\\StudentsUse_Dataset_Armenia\\StudentsUse_Dataset_Armenia_Converted",
       "workingDirectory": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\StudentsUse_Dataset_Armenia\\StudentsUse_Dataset_Armenia"
+    },
+    "DayTwo": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\SijieBu.AzureAD\\CSCI576\\Presentation_Set\\day2 C:\\Users\\SijieBu.AzureAD\\CSCI576\\Presentation_Set\\day2_converted"
     }
   }
 }
